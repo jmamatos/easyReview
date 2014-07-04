@@ -1,0 +1,347 @@
+%% easyReview.sty, v-1.0 jmamatos
+%% Copyright 2012-2013 by jmamatos
+%%
+%% This work may be distributed and/or modified under the
+%% conditions of the \LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.\LaTeX-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of \LaTeX
+%% version 2005/12/01 or later.
+%%
+%% This work has the LPPL maintenance status `maintained'.
+%% 
+%% The Current Maintainer of this work is jmamatos, led
+%% by Jody Maick Matos. Further information are available on 
+%% 
+%%
+%% 
+%%
+%% Revision history:
+%%
+%% 2013/12/09 laurocesar
+%% 
+%%
+
+\documentclass[a4paper]{ltxdoc}
+\usepackage{lmodern}			% Usa a fonte Latin Modern			
+\usepackage[T1]{fontenc}		% seleção de códigos de fonte.
+\usepackage[utf8]{inputenc}		% determina a codificação utiizada (conversão automática dos acentos)
+\usepackage{hyperref}  			% controla a formação do índice
+\usepackage{parskip}			% espaçamento entre os parágrafos
+\usepackage{microtype} 			% para melhorias de justificação
+\usepackage{morefloats}			% permite mais floats 
+\usepackage{listings}
+\usepackage[margin=1in]{geometry}
+\usepackage{../../../tex/latex/easyReview/easyReview}
+
+\lstset{
+		keywordstyle=\bfseries\color{purple!60!black},
+		commentstyle=\itshape\color{green!40!black},
+% 		identifierstyle=\itshape,
+		stringstyle=\itshape,
+		showstringspaces=false,
+		escapeinside={\%*}{*)},
+		columns=flexible,
+		breaklines=true,
+		breakindent=0pt}
+\renewcommand\lstlistingname{Example}
+% \renewcommand\lstlistlistingname{\textbf{List of Algorithms}}
+
+\newcommand{\keyword}[1]{\textbf{\color{purple!60!black}{#1}}}
+
+\title{\textbf{The Easy Review Package}: \\ \Large{Reviewing
+\TeX~documents in an easy way}}
+
+%   \thanks{Este documento
+%   se referete ao \textsf{abntex2} versão \fileversion,
+%   de \filedate.}
+  
+\author{Jody Maick Matos\\\url{jody.matos@inf.ufrgs.br}}
+
+\date{\today, v-1.0}
+
+\hypersetup{
+		pdftitle={The Easy Review Package},
+		pdfauthor={Jody Maick Matos},
+    	pdfsubject={Reviewing
+\TeX~documents in an easy way}, 
+		pdfproducer={Jody Maick Matos -- jody.matos@inf.ufrgs.br}, 	% producer of the document
+	    pdfcreator={\LaTeX with easyReview},
+    	colorlinks=true,
+    	linkcolor=blue,
+    	citecolor=blue,
+		urlcolor=blue
+}
+
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+
+\changes{v1.0}{2013/12/09}{First version}
+
+\begin{document}
+
+
+\maketitle
+
+\begin{abstract}
+The \textit{easyReview} provide a way to review (or perform editorial process) in \LaTeX. You can use the provided commands to claim attention in different ways to part of the text, or even to indicate that a text was added, needs to be removed, needs to be replaced and add comments to the text.
+\end{abstract}
+
+\tableofcontents
+
+% \listoftables
+
+% ------
+\section{User's Guide}
+% ------
+
+% ------
+\subsection{Getting started}
+% ------
+% ------
+\subsubsection{A minimal file}
+\label{sec:minimal}
+% ------
+Before using the listings package, you should be familiar with the \\LaTeX~typesetting
+system. You need not to be an expert. Here is a minimal file for using easyReview:
+
+\begin{lstlisting}[language=tex]
+%*\keyword{$\backslash$documentclass}*){article}
+%*\keyword{$\backslash$usepackage}*){easyReview}
+
+%*\keyword{$\backslash$begin}*){document}
+
+% Write your text here and use.
+% You will be able to use the easyReview commands.
+
+%*\keyword{$\backslash$end}*){document
+
+\end{lstlisting}
+
+Now, type in this first example and run it through \\LaTeX.
+
+\begin{description}
+ \item[* Should I read the software license before using the package?:] Yes, but read this \textit{Getting started} Section first to decide whether you are willing to use the package.
+ \item[* The example doesn't work:] The easyReview package requires that four other packages must be installed (but himself, of course) in the way for working properly: \textbf{\textit{soul, xcolor,} and \textit{todonotes}}. Please, be sure that the \\LaTeX~engine and \textit{all} these packages are installed before trying the given example (or any other easyReview utilization).
+\end{description}
+
+% ------
+\subsubsection{Loading the package}
+% ------
+As usual in \\LaTeX, the package is loaded by ``\keyword{$\backslash$usepackage}\{easyReview\}''.
+
+% ------
+\subsubsection{Figure out the appearance}
+% ------
+``alert'' is typeset in red; ``add'' in blue; ``remove'' in strikethrough red; ``substitute''/``replace'' are equivalent commands which appear as a combination of both ``remove'' and ``add'' commands; ``highlight''  is typeset with yellow background; and ``comment'' appears as an inline box with orange background.
+
+% ------
+\subsection{A package overview}
+% ------
+\begin{center}
+\begin{minipage}[ht]{0.45\textwidth}
+\begin{lstlisting}[language=tex]
+The Easy Review package is intended to be used for reviewing (or in editorial process) of %*\keyword{$\backslash$TeX}*)~documents, such as research papers, reports, books, presentations %*\keyword{$\backslash$textit}*){etc}. By using this package, %*\keyword{$\backslash$alert}*){the authors can %*\keyword{$\backslash$textbf}*){easily} claim attention to special parts of the text} %*\keyword{$\backslash$highlight}*){using different ways!} In this small example, you will be able to see the whole that the Easy Review package have.
+\end{lstlisting}
+\end{minipage}
+\hspace{10pt}
+\begin{minipage}[ht]{0.45\textwidth}
+The Easy Review package is intended to be used for reviewing (or in editorial process) of \TeX~documents, such as research papers, reports, books, presentations \textit{etc}. By using this package, \alert{the authors can \textbf{easily} claim attention to special parts of the text} \highlight{using different ways!} In this small example, you will be able to see the whole that the Easy Review package have.
+\end{minipage}
+\end{center}
+
+\begin{center}
+\begin{minipage}[ht]{0.45\textwidth}
+\begin{lstlisting}[language=tex]
+%*\keyword{$\backslash$replace}*){For obtaining}{In the way to obtain} the final version of the \TeX~document, the authors will need to perform a lot changes over the original text. In this sense, it would be very interesting to have an available package which could turn easy the task of highlight some changes: %*\keyword{$\backslash$alert}*){alert a phrase ou period}; %*\keyword{$\backslash$highlight}*){highlight another \TeX~ content}; %*\keyword{$\backslash$add}*){add specific parts in the text}; %*\keyword{$\backslash$remove}*){remove another parts}; or even %*\keyword{$\backslash$replace}*){substitute}{replace} parts of the text. Another very important feature would be %*\keyword{$\backslash$comment}*){using special commands to let a comment to the group.}{This feature is really important!}
+\end{lstlisting}
+\end{minipage}
+\hspace{10pt}
+\begin{minipage}[ht]{0.45\textwidth}
+\replace{For obtaining}{In the way to obtain} the final version of the \TeX~document, the authors will need to perform a lot changes over the original text. In this sense, it would be very interesting to have an available package which could turn easy the task of highlight some changes: \alert{alert a phrase ou period}; \highlight{highlight another \TeX~ content}; \add{add specific parts in the text}; \remove{remove another parts}; or even \replace{substitute}{replace} parts of the text. Another very important feature would be \comment{using special commands to let a comment to the group.}{This feature is really important!}
+\end{minipage}
+\end{center}
+
+% ------
+\subsection{The Main commands}
+% ------
+% ------
+\subsubsection{The alert command}
+% ------
+Command intended to claim author's attention to a given part of the text. In the following, it is possible to see an example:
+
+\begin{center}
+\begin{minipage}[ht]{0.45\textwidth}
+\begin{lstlisting}[language=tex]
+A text without the alert command. %*\keyword{$\backslash$alert}*){A text with the alert command}.
+\end{lstlisting}
+\end{minipage}
+\hspace{10pt}
+\begin{minipage}[ht]{0.45\textwidth}
+A text without the alert command. \alert{A text with the alert command}.
+\end{minipage}
+\end{center}
+
+% ------
+\subsection{The highlight command}
+% ------
+Command intended to claim author's attention to a given part of the text in a different to the ``alert'' command. In the following, it is possible to see an example:
+
+\begin{center}
+\begin{minipage}[ht]{0.45\textwidth}
+\begin{lstlisting}[language=tex]
+A text without the highlight command. %*\keyword{$\backslash$highlight}*){A text with the highlight command}.
+\end{lstlisting}
+\end{minipage}
+\hspace{10pt}
+\begin{minipage}[ht]{0.45\textwidth}
+A text without the highlight command. \highlight{A text with the highlight command}.
+\end{minipage}
+\end{center}
+
+% ------
+\subsection{The remove command}
+% ------
+Command which an author suggest to remove a given part of the text. In the following, it is possible to see an example:
+
+\begin{center}
+\begin{minipage}[ht]{0.45\textwidth}
+\begin{lstlisting}[language=tex]
+This text is not to be removed. %*\keyword{$\backslash$remove}*){This text is to be removed}.
+\end{lstlisting}
+\end{minipage}
+\hspace{10pt}
+\begin{minipage}[ht]{0.45\textwidth}
+This text is not to be removed. \remove{This text is to be removed}.
+\end{minipage}
+\end{center}
+
+% ------
+\subsection{The add command}
+% ------
+Command which an author suggest to add new text in a given part of the text. In the following, it is possible to see an example:
+
+\begin{center}
+\begin{minipage}[ht]{0.45\textwidth}
+\begin{lstlisting}[language=tex]
+This text was already in the text. %*\keyword{$\backslash$add}*){This text is been added now}.
+\end{lstlisting}
+\end{minipage}
+\hspace{10pt}
+\begin{minipage}[ht]{0.45\textwidth}
+This text was already in the text. \add{This text is been added now}.
+\end{minipage}
+\end{center}
+
+% ------
+\subsection{The replace/substitute commands}
+% ------
+Both commands are equivalent. It shall be used when an author suggest to replace a given part of the text for a newer one. In the following, it is possible to see an example:
+
+\begin{center}
+\begin{minipage}[ht]{0.45\textwidth}
+\begin{lstlisting}[language=tex]
+%*\keyword{$\backslash$replace}*){This part of the text needs to be replaced}{for this newer part of the text}.
+\end{lstlisting}
+\end{minipage}
+\hspace{10pt}
+\begin{minipage}[ht]{0.45\textwidth}
+\replace{This part of the text needs to be replaced}{for this newer part of the text}.
+\end{minipage}
+\end{center}
+
+% ------
+\subsection{The comment command}
+% ------
+Command intended to claim author's attention to a given part of the text, giving some comments to provide more information. In the following, it is possible to see an example:
+
+\begin{center}
+\begin{minipage}[ht]{0.45\textwidth}
+\begin{lstlisting}[language=tex]
+%*\keyword{$\backslash$comment}*){This text will receive a comment.}{This is the comment I have!}.
+\end{lstlisting}
+\end{minipage}
+\hspace{10pt}
+\begin{minipage}[ht]{0.45\textwidth}
+\comment{This text will receive a comment.}{This is the comment I have!}.
+\end{minipage}
+\end{center}
+
+% ------
+\section{Advanced Techniques}
+% ------
+
+% ------
+\subsection{Turning reviews ON or OFF}
+% ------
+It is possible to turn the reviews ON or OFF. In some extent, it is possible to say that, when the reviews is turned off, they were not accepted. In the following, it is possible to see an example:
+
+\begin{center}
+\begin{minipage}[ht]{0.45\textwidth}
+\begin{lstlisting}[language=tex]
+%*\keyword{$\backslash$setreviewson}*)
+This text will receive the reviews. The Easy Review package is intended to be used for reviewing (or in editorial process) of %*\keyword{$\backslash$TeX}*)~documents, such as research papers, reports, books, presentations %*\keyword{$\backslash$textit}*){etc}. By using this package, %*\keyword{$\backslash$alert}*){the authors can %*\keyword{$\backslash$textbf}*){easily} claim attention to special parts of the text} %*\keyword{$\backslash$highlight}*){using different ways!} In this small example, you will be able to see the whole that the Easy Review package have.
+\end{lstlisting}
+\end{minipage}
+\hspace{10pt}
+\begin{minipage}[ht]{0.45\textwidth}
+The Easy Review package is intended to be used for reviewing (or in editorial process) of \TeX~documents, such as research papers, reports, books, presentations \textit{etc}. By using this package, \alert{the authors can \textbf{easily} claim attention to special parts of the text} \highlight{using different ways!} In this small example, you will be able to see the whole that the Easy Review package have.
+\end{minipage}
+\end{center}
+
+\begin{center}
+\begin{minipage}[ht]{0.45\textwidth}
+\begin{lstlisting}[language=tex]
+%*\keyword{$\backslash$setreviewsoff}*)
+This text will not receive the reviews. %*\keyword{$\backslash$replace}*){For obtaining}{In the way to obtain} the final version of the \TeX~document, the authors will need to perform a lot changes over the original text. In this sense, it would be very interesting to have an available package which could turn easy the task of highlight some changes: %*\keyword{$\backslash$alert}*){alert a phrase ou period}; %*\keyword{$\backslash$highlight}*){highlight another \TeX~ content}; %*\keyword{$\backslash$add}*){add specific parts in the text}; %*\keyword{$\backslash$remove}*){remove another parts}; or even %*\keyword{$\backslash$replace}*){substitute}{replace} parts of the text. Another very important feature would be %*\keyword{$\backslash$comment}*){using special commands to let a comment to the group.}{This feature is really important!}
+\end{lstlisting}
+\end{minipage}
+\hspace{10pt}
+\begin{minipage}[ht]{0.45\textwidth}
+For obtaining the final version of the \TeX~document, the authors will need to perform a lot changes over the original text. In this sense, it would be very interesting to have an available package which could turn easy the task of highlight some changes: alert a phrase or period; highlight another \TeX~ content; remove another parts; or even substitute parts of the text. Another very important feature would be using special commands to let a comment to the group.
+\end{minipage}
+\end{center}
+
+% ------
+\subsection{Changing the default colors}
+% ------
+The default colors used in the commands are provided by the \textit{xcolor} package. It is possible to change all colors but the highlight color. To change the command colors, use on of these assignments:
+
+\begin{lstlisting}[language=tex]
+%*\keyword{$\backslash$renewcommand}*){%*\keyword{$\backslash$alertColor}*)}{%*\keyword{$\backslash$textcolor}*){%new alert color%%*\}\}*)
+%*\keyword{$\backslash$renewcommand}*){%*\keyword{$\backslash$removeColor}*)}{%*\keyword{$\backslash$textcolor}*){%new remove color%%*\}\}*)
+%*\keyword{$\backslash$renewcommand}*){%*\keyword{$\backslash$addColor}*)}{%*\keyword{$\backslash$textcolor}*){%new add color%%*\}\}*)
+
+\end{lstlisting}
+
+\section{Troubleshooting}
+\label{sec:troubleshooting}
+If you're faced with a problem with the listings package, there are some steps you should undergo before you make a bug report. First, create a minimal file which reproduces the problem. Follow these instructions:
+
+\begin{enumerate}
+ \item Start from the minimal file in Section \ref{sec:minimal};
+ \item Add the \LaTeX code which causes the problem, but keep it short. In particular, keep the number of additional packages small;
+ \item Remove some code from the file (and the according packages) until the problem disappears. Then you've found a crucial piece;
+ \item Add this piece of code again and start over with step 3 until all code and all packages are substantial;
+ \item You now have a minimal file. Send a bug report to \url{jody.matos@inf.ufrgs.br} and include the minimal file together with the created \textit{.log-file}. If you use a very special package (i.e., one not on CTAN), also include the package if its software license allows it.
+\end{enumerate}
+
+% ------
+\section{The Next Steps}
+% ------
+Now, before actually using the \textit{easyReview} package, you should really read the software license. It does not cost much time and provides information you probably need to know.
+
+% ------
+\subsection{Software License}
+% ------
+The file \lstinline!easyReview.sty! and all files generated this file are referred to as ‘the Easy Review package’ or simply ‘the package’.
+
+\begin{description}
+ \item[Copyright:] The Easy Review package is copyright 2013- by jmamatos (\url{jody.matos@inf.ufrgs.br}).
+ \item[Distribution and modification:]  This work may be distributed and/or modified under the conditions of the \LaTeX Project Public License, either version 1.3 of this license or (at your option) any later version. The latest version of this license is in \url{http://www.latex-project.org/lppl.txt} and version 1.3 or later is part of all distributions of \LaTeX version 2005/12/01 or later. This work has the LPPL maintenance status `maintained'. The Current Maintainer of this work is jmamatos, led by Jody Maick Matos. Further information are available on 
+ \item[Contacts:] Read Section \ref{sec:troubleshooting} on how to submit a bug report. Send all other comments and ideas to \url{jody.matos@inf.ufrgs.br} using \textit{easyReview} as part of the subject.
+\end{description}
+
+\end{document}
