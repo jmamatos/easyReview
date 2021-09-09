@@ -35,7 +35,7 @@
 \newcommand{\setreviewson}{\istoreviewtrue}
 \newcommand{\setreviewsoff}{\istoreviewfalse}
 
-\RequirePackage{soul}
+\RequirePackage{soulutf8}
 \RequirePackage{xcolor}
 \RequirePackage{todonotes}
 
@@ -48,6 +48,6 @@
 \newcommand{\add}[1]{\ifistoreview\addColor{#1}\else #1\fi}
 \newcommand{\substitute}[2]{\ifistoreview\remove{#1}~\add{#2} \else #1\fi}
 \newcommand{\replace}[2]{\ifistoreview\remove{#1}~\add{#2}\else #1\fi}
-\newcommand{\highlight}[1]{\hl{#1}}
+\newcommand{\highlight}[1]{\ifistoreview\hl{#1}\else #1\fi}
 
-\newcommand{\comment}[2]{\highlight{#1}\todo[inline]{#2}}
+\newcommand{\comment}[2]{\ifistoreview\highlight{#1}\todo[inline]{#2}\else#1\fi
